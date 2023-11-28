@@ -20,8 +20,7 @@ export default class Navigation
         this.view = {}
 
         this.view.spherical = {}
-        this.view.spherical.value = new THREE.Spherical(30, Math.PI * 0.35, - Math.PI * 0.25)
-        // this.view.spherical.value.radius = 5
+        this.view.spherical.value = new THREE.Spherical(6, Math.PI*0.5, Math.PI*0.5)
         this.view.spherical.smoothed = this.view.spherical.value.clone()
         this.view.spherical.smoothing = 0.005
         this.view.spherical.limits = {}
@@ -30,7 +29,7 @@ export default class Navigation
         this.view.spherical.limits.theta = { min: -Math.PI, max: Math.PI };
 
         this.view.target = {}
-        this.view.target.value = new THREE.Vector3(0, 2, 0)
+        this.view.target.value = new THREE.Vector3(0, 0.45, 0)
         // this.view.target.value.set(0, 3, -3)
         this.view.target.smoothed = this.view.target.value.clone()
         this.view.target.smoothing = 0.005

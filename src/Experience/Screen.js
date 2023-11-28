@@ -46,7 +46,6 @@ export default class Screen
         this.model.mesh.material = this.model.material
         this.scene.add(this.model.mesh)
 
-        //Flip the screen
     }
 
     update()

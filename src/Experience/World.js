@@ -46,7 +46,7 @@ q
         // )
         this.backScreen = new Screen(
             this.resources.items.backScreenModel.scene.children[0],
-            '/assets/videoStream.mp4'
+            '/assets/video.mp4'
         )
     }
 
