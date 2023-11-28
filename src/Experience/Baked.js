@@ -89,19 +89,19 @@ export default class CoffeeSteam
         // Debug
         if(this.debug)
         {
-            // this.debugFolder
-            //     .addInput(
-            //         this.model.material.uniforms.uNightMix,
-            //         'value',
-            //         { label: 'uNightMix', min: 0, max: 1 }
-            //     )
+            this.debugFolder
+                .addInput(
+                    this.model.material.uniforms.uNightMix,
+                    'value',
+                    { label: 'ambientLight', min: 0, max: 1 }
+                )
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.model.material.uniforms.uNeutralMix,
-            //         'value',
-            //         { label: 'uNeutralMix', min: 0, max: 1 }
-            //     )
+            this.debugFolder
+                .addInput(
+                    this.model.material.uniforms.uNeutralMix,
+                    'value',
+                    { label: 'uNeutralMix', min: 0, max: 1 }
+                )
 
             // this.debugFolder
             //     .addInput(
