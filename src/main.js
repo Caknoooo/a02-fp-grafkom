@@ -29,12 +29,12 @@ document.body.appendChild(renderer.domElement);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 
-scene.background = new THREE.Color('#121212');
+scene.background = new THREE.Color('#ffffff');
 renderer.setClearAlpha(1);
 
 // orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
+controls.enableDamping = true;``
 controls.dampingFactor = 0.125;
 
 window.addEventListener('resize', onWindowResize);

@@ -6,11 +6,11 @@ uniform sampler2D uLightMapTexture;
 uniform float uNightMix;
 uniform float uNeutralMix;
 
-uniform vec3 uLightTvColor;
-uniform float uLightTvStrength;
+uniform vec3 uLightAreaColor;
+uniform float uLightAreaStrength;
 
-uniform vec3 uLightDeskColor;
-uniform float uLightDeskStrength;
+uniform vec3 uLightSpotColor;
+uniform float uLightSpotStrength;
 
 uniform vec3 uLightPcColor;
 uniform float uLightPcStrength;
@@ -30,14 +30,14 @@ void main()
     vec3 bakedColor = mix(mix(bakedDayColor, bakedNightColor, uNightMix), bakedNeutralColor, uNeutralMix);
     vec3 lightMapColor = texture2D(uLightMapTexture, vUv).rgb;
 
-    float lightTvStrength = lightMapColor.r * uLightTvStrength;
-    bakedColor = blend(bakedColor, uLightTvColor, lightTvStrength);
+    float lightAreaStrength = lightMapColor.r * uLightAreaStrength;
+    bakedColor = blend(bakedColor, uLightAreaColor, lightAreaStrength);
 
     float lightPcStrength = lightMapColor.b * uLightPcStrength;
     bakedColor = blend(bakedColor, uLightPcColor, lightPcStrength);
 
-    float lightDeskStrength = lightMapColor.g * uLightDeskStrength;
-    bakedColor = blend(bakedColor, uLightDeskColor, lightDeskStrength);
+    float lightSpotStrength = lightMapColor.g * uLightSpotStrength;
+    bakedColor = blend(bakedColor, uLightSpotColor, lightSpotStrength);
 
     gl_FragColor = vec4(bakedColor, 1.0);
 }
