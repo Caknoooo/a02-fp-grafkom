@@ -44,7 +44,7 @@ export default class CoffeeSteam {
     this.model.lightMapTexture.flipY = false;
 
     this.colors = {};
-    this.colors.area = "#ffce85";
+    this.colors.area = "#FFCE85";
     this.colors.spot = "#ffe9c2";
     this.colors.pc = "#0082ff";
 
