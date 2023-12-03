@@ -13,7 +13,7 @@ export default class Stats
 
         if(_active)
         {
-            this.activate()
+            // this.activate()
         }
     }
 
