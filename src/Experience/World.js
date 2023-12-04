@@ -3,6 +3,7 @@ import Experience from './Experience.js'
 import Baked from './Baked.js'
 import BouncingLogo from './BouncingLogo.js'
 import Screen from './Screen.js'
+import Couch from './Couch.js'
 
 export default class World
 {
@@ -20,6 +21,7 @@ export default class World
                 this.setBaked()
                 // this.setBouncingLogo()
                 this.setScreens()
+                this.setCouch()
             }
         })
     }
@@ -48,6 +50,11 @@ q
             this.resources.items.backScreenModel.scene.children[0],
             '/assets/video.mp4'
         )
+    }
+
+    setCouch()
+    {
+        this.couch = new Couch()
     }
 
     resize()
