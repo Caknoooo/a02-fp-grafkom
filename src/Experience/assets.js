@@ -4,21 +4,6 @@ export default [
     data: {},
     items: [
       {
-        name: "threejsJourneyLogoTexture",
-        source: "/assets/logo.png",
-        type: "texture",
-      },
-      {
-        name: "pcScreenModel",
-        source: "/assets/pcScreenModel.glb",
-        type: "model",
-      },
-      {
-        name: "macScreenModel",
-        source: "/assets/macScreenModel.glb",
-        type: "model",
-      },
-      {
         name: "backScreenModel",
         source: "/assets/backScreenModel.glb",
         type: "model",
