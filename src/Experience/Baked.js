@@ -44,8 +44,8 @@ export default class CoffeeSteam {
     this.model.lightMapTexture.flipY = false;
 
     this.colors = {};
-    this.colors.area = "#ffce85";
-    this.colors.spot = "#ffe9c2";
+    this.colors.area = "#FF2533";
+    this.colors.spot = "#FF2533";
     this.colors.pc = "#0082ff";
 
     this.model.material = new THREE.ShaderMaterial({
