@@ -30,6 +30,11 @@ export default [
       },
       { name: "roomModel", source: "/assets/roomModel.glb" },
       { name: "couchModel", source: "/assets/couchModel.glb" },
+      { name: "chairModel", source: "/assets/chairModel.glb" },
+      { name: "tableModel", source: "/assets/tableModel.glb" },
+      { name: "podiumModel", source: "/assets/podiumModel.glb" },
+      { name: "speakerModel", source: "/assets/speakerModel.glb" },
+      { name: "airconModel", source: "/assets/airconModel.glb" },
     ],
   },
 ];

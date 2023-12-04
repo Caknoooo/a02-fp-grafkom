@@ -4,6 +4,11 @@ import Baked from './Baked.js'
 import BouncingLogo from './BouncingLogo.js'
 import Screen from './Screen.js'
 import Couch from './Couch.js'
+import Chair from './Chair.js'
+import Table from './Table.js'
+import Podium from './Podium.js'
+import Speaker from './Speaker.js'
+import Aircon from './Aircon.js'
 
 export default class World
 {
@@ -22,6 +27,11 @@ export default class World
                 // this.setBouncingLogo()
                 this.setScreens()
                 this.setCouch()
+                this.setChair()
+                this.setTable()
+                this.setPodium()
+                this.setSpeaker()
+                this.setAircon()
             }
         })
     }
@@ -55,6 +65,34 @@ q
     setCouch()
     {
         this.couch = new Couch()
+    }
+
+    setChair()
+    {
+        this.chair = new Chair()
+        // (todo) populate chairs here
+    }
+
+    setTable()
+    {
+        this.table = new Table()
+        // (todo) populate tables here
+    }
+
+    setPodium()
+    {
+        this.podium = new Podium()
+    }
+
+    setSpeaker()
+    {
+        this.speaker = new Speaker()
+        // (todo) populate speakers here
+    }
+
+    setAircon()
+    {
+        this.aircon = new Aircon()
     }
 
     resize()
