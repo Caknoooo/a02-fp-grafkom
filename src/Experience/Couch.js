@@ -10,10 +10,10 @@ export default class Couch {
         this.world = this.experience.world;
 
         this.setModel();
-        this.setPosition(-3.7, 0.11, 0);
-        this.scale(0.05);
-        this.rotate(-90, 0, 0);
-        this.addLighting(); // Add this line
+        this.setPosition(-3.8, 0.1, 0);
+        this.scale(0.0058);
+        this.rotate(-90, 0, 90);
+        this.addLighting();
     }
 
     setModel() {
