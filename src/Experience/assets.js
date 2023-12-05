@@ -4,21 +4,6 @@ export default [
     data: {},
     items: [
       {
-        name: "threejsJourneyLogoTexture",
-        source: "/assets/logo.png",
-        type: "texture",
-      },
-      {
-        name: "pcScreenModel",
-        source: "/assets/pcScreenModel.glb",
-        type: "model",
-      },
-      {
-        name: "macScreenModel",
-        source: "/assets/macScreenModel.glb",
-        type: "model",
-      },
-      {
         name: "backScreenModel",
         source: "/assets/backScreenModel.glb",
         type: "model",
@@ -44,6 +29,12 @@ export default [
         type: "texture",
       },
       { name: "roomModel", source: "/assets/roomModel.glb" },
+      { name: "couchModel", source: "/assets/couchModel.glb" },
+      { name: "chairModel", source: "/assets/chairModel.glb" },
+      { name: "tableModel", source: "/assets/tableModel.glb" },
+      { name: "podiumModel", source: "/assets/podiumModel.glb" },
+      { name: "speakerModel", source: "/assets/speakerModel.glb" },
+      { name: "airconModel", source: "/assets/airconModel.glb" },
     ],
   },
 ];
