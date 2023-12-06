@@ -70,13 +70,21 @@ export default class Camera
         this.modes.front_view.instance = this.instance.clone()
         this.modes.front_view.instance.rotation.reorder('YXZ')
         this.modes.front_view.instance.position.set(-2.5, 0.5, 0.5)
-        this.modes.front_view.instance.lookAt(0, 0, 0)
         this.modes.front_view.orbitControls = new OrbitControls(this.modes.front_view.instance, this.targetElement)
         this.modes.front_view.orbitControls.enabled = false
         this.modes.front_view.orbitControls.enableDamping = true
         this.modes.front_view.orbitControls.update()
 
         // Podium view
+        this.modes.podium_view = {}
+        this.modes.podium_view.instance = this.instance.clone()
+        this.modes.podium_view.instance.rotation.reorder('YXZ')
+        this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
+        this.modes.podium_view.orbitControls = new OrbitControls(this.modes.podium_view.instance, this.targetElement)
+        this.modes.podium_view.orbitControls.target = new THREE.Vector3().addVectors(this.modes.podium_view.instance.position, new THREE.Vector3(-3.4, 0, 0))
+        this.modes.podium_view.orbitControls.enabled = false
+        this.modes.podium_view.orbitControls.enableDamping = true
+        this.modes.podium_view.orbitControls.update()
     }
 
     changeMode(_mode)
@@ -85,16 +93,22 @@ export default class Camera
 
         if (this.mode === 'front_view') {
             this.instance.setFocalLength(17)
-        } else {
-            this.instance.setFocalLength(101)
-        }
 
-        if (this.mode === 'front_view') {
             this.modes.front_view.orbitControls.enabled = true
             this.modes.podium_view.orbitControls.enabled = false
 
             this.modes.front_view.instance.position.set(-2.5, 0.5, 0.5)
-            this.modes.front_view.instance.lookAt(0, 0, 0)
+        } else if (this.mode === 'podium_view') {
+            this.instance.setFocalLength(19)
+            this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
+
+            this.modes.front_view.orbitControls.enabled = false
+            this.modes.podium_view.orbitControls.enabled = true
+        } else {
+            this.instance.setFocalLength(101)
+
+            this.modes.front_view.orbitControls.enabled = false
+            this.modes.podium_view.orbitControls.enabled = false
         }
     }
 
@@ -108,11 +122,15 @@ export default class Camera
 
         this.modes.front_view.instance.aspect = this.config.width / this.config.height
         this.modes.front_view.instance.updateProjectionMatrix()
+
+        this.modes.podium_view.instance.aspect = this.config.width / this.config.height
+        this.modes.podium_view.instance.updateProjectionMatrix()
     }
 
     update()
     {
         this.modes.front_view.orbitControls.update()
+        this.modes.podium_view.orbitControls.update()
 
         // Apply coordinates
         this.instance.position.copy(this.modes[this.mode].instance.position)
