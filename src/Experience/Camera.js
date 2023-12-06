@@ -69,9 +69,15 @@ export default class Camera
         this.modes.front_view = {}
         this.modes.front_view.instance = this.instance.clone()
         this.modes.front_view.instance.rotation.reorder('YXZ')
-        this.modes.front_view.instance.position.set(-2.5, 0.5, 0.5)
+        this.modes.front_view.instance.position.set(-2.7, 0.5, 0)
         this.modes.front_view.orbitControls = new OrbitControls(this.modes.front_view.instance, this.targetElement)
         this.modes.front_view.orbitControls.enabled = false
+        this.modes.front_view.orbitControls.minAzimuthAngle = -Math.PI / 16 - Math.PI / 2
+        this.modes.front_view.orbitControls.maxAzimuthAngle = Math.PI / 16 - Math.PI / 2
+        this.modes.front_view.orbitControls.minPolarAngle = THREE.MathUtils.degToRad(75)
+        this.modes.front_view.orbitControls.maxPolarAngle = THREE.MathUtils.degToRad(85)
+        this.modes.front_view.orbitControls.maxDistance = 3.5
+        this.modes.front_view.orbitControls.minDistance = 0.5
         this.modes.front_view.orbitControls.enableDamping = true
         this.modes.front_view.orbitControls.update()
 
@@ -79,10 +85,16 @@ export default class Camera
         this.modes.podium_view = {}
         this.modes.podium_view.instance = this.instance.clone()
         this.modes.podium_view.instance.rotation.reorder('YXZ')
-        this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
+        this.modes.podium_view.instance.position.set(-2.5, 0.3, 0)
         this.modes.podium_view.orbitControls = new OrbitControls(this.modes.podium_view.instance, this.targetElement)
-        this.modes.podium_view.orbitControls.target = new THREE.Vector3().addVectors(this.modes.podium_view.instance.position, new THREE.Vector3(-3.4, 0, 0))
+        this.modes.podium_view.orbitControls.target = new THREE.Vector3().addVectors(this.modes.podium_view.instance.position, new THREE.Vector3(-3, 0, 0))
         this.modes.podium_view.orbitControls.enabled = false
+        this.modes.podium_view.orbitControls.minAzimuthAngle = -Math.PI / 16 + Math.PI / 2
+        this.modes.podium_view.orbitControls.maxAzimuthAngle = Math.PI / 16 + Math.PI / 2
+        this.modes.podium_view.orbitControls.minPolarAngle = THREE.MathUtils.degToRad(80)
+        this.modes.podium_view.orbitControls.maxPolarAngle = THREE.MathUtils.degToRad(90)
+        this.modes.podium_view.orbitControls.maxDistance = 5
+        this.modes.podium_view.orbitControls.minDistance = 2
         this.modes.podium_view.orbitControls.enableDamping = true
         this.modes.podium_view.orbitControls.update()
     }
@@ -97,7 +109,7 @@ export default class Camera
             this.modes.front_view.orbitControls.enabled = true
             this.modes.podium_view.orbitControls.enabled = false
 
-            this.modes.front_view.instance.position.set(-2.5, 0.5, 0.5)
+            this.modes.front_view.instance.position.set(-2.7, 0.5, 0.5)
         } else if (this.mode === 'podium_view') {
             this.instance.setFocalLength(19)
             this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
@@ -106,6 +118,7 @@ export default class Camera
             this.modes.podium_view.orbitControls.enabled = true
         } else {
             this.instance.setFocalLength(101)
+            this.modes.podium_view.instance.position.set(0, 0, 0)
 
             this.modes.front_view.orbitControls.enabled = false
             this.modes.podium_view.orbitControls.enabled = false
