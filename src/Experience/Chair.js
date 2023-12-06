@@ -8,7 +8,6 @@ export default class Chair {
         this.debug = this.experience.debug;
         this.scene = this.experience.scene;
         this.world = this.experience.world;
-        console.log('Load chair')
 
         this.setModel();
         this.setPosition(-2, 0, 0.5);
