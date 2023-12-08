@@ -44,9 +44,8 @@ export default class CoffeeSteam {
     this.model.lightMapTexture.flipY = false;
 
     this.colors = {};
-    this.colors.area = "#FF2533";
-    this.colors.spot = "#FF2533";
-    this.colors.pc = "#0082ff";
+    this.colors.BackDrop = "#FF000A";
+    this.colors.OutsideLight = "#e5b53a";
 
     this.model.material = new THREE.ShaderMaterial({
       uniforms: {
@@ -55,17 +54,14 @@ export default class CoffeeSteam {
         uBakedNeutralTexture: { value: this.model.bakedNeutralTexture },
         uLightMapTexture: { value: this.model.lightMapTexture },
 
-        uNightMix: { value: 1 },
+        uNightMix: { value: 0.28 },
         uNeutralMix: { value: 0 },
 
-        uLightAreaColor: { value: new THREE.Color(this.colors.area) },
-        uLightAreaStrength: { value: 0 },
+        uLightAreaColor: { value: new THREE.Color(this.colors.BackDrop) },
+        uLightAreaStrength: { value: 0.2 },
 
-        uLightSpotColor: { value: new THREE.Color(this.colors.spot) },
-        uLightSpotStrength: { value: 0 },
-
-        uLightPcColor: { value: new THREE.Color(this.colors.pc) },
-        uLightPcStrength: { value: 0 },
+        uLightSpotColor: { value: new THREE.Color(this.colors.OutsideLight) },
+        uLightSpotStrength: { value: 1.46 },
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
@@ -93,59 +89,41 @@ export default class CoffeeSteam {
         { label: "Neutral", min: 0, max: 1 }
       );
 
-    //   this.debugFolder
-    //       .addInput(
-    //           this.colors,
-    //           'area',
-    //           { view: 'color' }
-    //       )
-    //       .on('change', () =>
-    //       {
-    //           this.model.material.uniforms.uLightAreaColor.value.set(this.colors.area)
-    //       })
-
-    //   this.debugFolder
-    //       .addInput(
-    //           this.model.material.uniforms.uLightAreaStrength,
-    //           'value',
-    //           { label: 'uLightAreaStrength', min: 0, max: 3 }
-    //       )
-
       this.debugFolder
           .addInput(
               this.colors,
-              'spot',
+              'BackDrop',
               { view: 'color' }
           )
           .on('change', () =>
           {
-              this.model.material.uniforms.uLightSpotColor.value.set(this.colors.spot)
+              this.model.material.uniforms.uLightAreaColor.value.set(this.colors.BackDrop)
+          })
+
+      this.debugFolder
+          .addInput(
+              this.model.material.uniforms.uLightAreaStrength,
+              'value',
+              { label: 'BackDropStrength', min: 0, max: 0.8 }
+          )
+
+      this.debugFolder
+          .addInput(
+              this.colors,
+              'OutsideLight',
+              { view: 'color' }
+          )
+          .on('change', () =>
+          {
+              this.model.material.uniforms.uLightSpotColor.value.set(this.colors.OutsideLight)
           })
 
       this.debugFolder
           .addInput(
               this.model.material.uniforms.uLightSpotStrength,
               'value',
-              { label: 'uLightSpotStrength', min: 0, max: 3 }
+              { label: 'OutsideLightStrength', min: 0, max: 5 }
           )
-
-      // this.debugFolder
-      //     .addInput(
-      //         this.colors,
-      //         'pc',
-      //         { view: 'color' }
-      //     )
-      //     .on('change', () =>
-      //     {
-      //         this.model.material.uniforms.uLightPcColor.value.set(this.colors.pc)
-      //     })
-
-      // this.debugFolder
-      //     .addInput(
-      //         this.model.material.uniforms.uLightPcStrength,
-      //         'value',
-      //         { label: 'uLightPcStrength', min: 0, max: 3 }
-      //     )
     }
   }
 }

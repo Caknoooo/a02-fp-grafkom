@@ -9,17 +9,19 @@ export default class Camera
         // Options
         this.experience = new Experience()
         this.config = this.experience.config
-        this.cameraToggle = this.experience.cameraToggle
+        this.resources = this.experience.resources
+        this.debug = this.experience.debug
         this.time = this.experience.time
         this.sizes = this.experience.sizes
         this.targetElement = this.experience.targetElement
+        this.world = this.experience.world
         this.scene = this.experience.scene
 
         // Camera toggle
-        if (this.cameraToggle) {
-            this.debugFolder = this.cameraToggle.addFolder({
+        if (this.debug) {
+            this.debugFolder = this.debug.addFolder({
                 title: 'Camera Toggle',
-                expanded: true
+                expanded: false
             })
         }
 
@@ -36,7 +38,7 @@ export default class Camera
         this.instance.rotation.reorder('YXZ')
 
         // Set up toggle
-        if (this.cameraToggle) {
+        if (this.debug) {
             this.debugFolder.addInput(
                 this,
                 'mode',

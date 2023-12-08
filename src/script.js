@@ -12,9 +12,9 @@ const loadingScreen = document.getElementById('loadingScreen');
 let progress = 0;
 const interval = setInterval(function () {
     progress += 1;
-    progressBar.style.width = `${progress * 5}%`; 
-    progressText.textContent = `${progress * 5}%`;
-    if (progress >= 20) { 
+    progressBar.style.width = `${progress * 1}%`; 
+    progressText.textContent = `${progress * 1}%`;
+    if (progress >= 100) { 
         clearInterval(interval);
         loadingScreen.style.transition = 'opacity 0.5s ease'; 
         loadingScreen.style.opacity = '0'; 
@@ -22,7 +22,7 @@ const interval = setInterval(function () {
             loadingScreen.style.display = 'none'; 
         }, 500); 
     }
-}, 500);
+}, 180);
 
 
 

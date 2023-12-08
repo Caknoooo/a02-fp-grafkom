@@ -101,10 +101,6 @@ export default class Experience
         {
             this.debug = new Pane()
             this.debug.containerElem_.style.width = '320px'
-
-            this.cameraToggle = new Pane()
-            this.cameraToggle.containerElem_.style.width = '320px'
-            this.cameraToggle.containerElem_.style.left = '10px'
         }
     }
     
