@@ -15,7 +15,7 @@ export default class CoffeeSteam {
     // Debug
     if (this.debug) {
       this.debugFolder = this.debug.addFolder({
-        title: "User Controls",
+        title: "Light Controls",
         expanded: false,
       });
     }
@@ -45,7 +45,6 @@ export default class CoffeeSteam {
 
     this.colors = {};
     this.colors.BackDrop = "#FF000A";
-    this.colors.OutsideLight = "#e5b53a";
 
     this.model.material = new THREE.ShaderMaterial({
       uniforms: {
@@ -54,14 +53,11 @@ export default class CoffeeSteam {
         uBakedNeutralTexture: { value: this.model.bakedNeutralTexture },
         uLightMapTexture: { value: this.model.lightMapTexture },
 
-        uNightMix: { value: 0.28 },
+        uNightMix: { value: 0.14 },
         uNeutralMix: { value: 0 },
 
         uLightAreaColor: { value: new THREE.Color(this.colors.BackDrop) },
         uLightAreaStrength: { value: 0.2 },
-
-        uLightSpotColor: { value: new THREE.Color(this.colors.OutsideLight) },
-        uLightSpotStrength: { value: 1.46 },
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
@@ -106,24 +102,6 @@ export default class CoffeeSteam {
               'value',
               { label: 'BackDropStrength', min: 0, max: 0.8 }
           )
-
-      this.debugFolder
-          .addInput(
-              this.colors,
-              'OutsideLight',
-              { view: 'color' }
-          )
-          .on('change', () =>
-          {
-              this.model.material.uniforms.uLightSpotColor.value.set(this.colors.OutsideLight)
-          })
-
-      this.debugFolder
-          .addInput(
-              this.model.material.uniforms.uLightSpotStrength,
-              'value',
-              { label: 'OutsideLightStrength', min: 0, max: 5 }
-          )
-    }
+    }   
   }
 }
