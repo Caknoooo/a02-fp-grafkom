@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import Experience from './Experience.js'
 import Baked from './Baked.js'
 import Screen from './Screen.js'
+import Chair from './Chair.js'
 
 export default class World
 {
@@ -18,6 +19,7 @@ export default class World
             {
                 this.setBaked()
                 this.setScreens()
+                this.setChairs()
             }
         })
     }
@@ -26,13 +28,18 @@ export default class World
     {
         this.baked = new Baked()
     }
-q
+
     setScreens()
     {
         this.backScreen = new Screen(
             this.resources.items.backScreenModel.scene.children[0],
             '/assets/video.mp4'
         )
+    }
+
+    setChairs()
+    {
+        this.chair = new Chair()
     }
 
     resize()

@@ -1,35 +1,52 @@
-import * as THREE from 'three'
-import Experience from './Experience.js'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three';
+import Experience from './Experience.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-export default class Camera
-{
-    constructor(_options)
-    {
+export default class Camera {
+    constructor(_options) {
         // Options
-        this.experience = new Experience()
-        this.config = this.experience.config
-        this.resources = this.experience.resources
-        this.debug = this.experience.debug
-        this.time = this.experience.time
-        this.sizes = this.experience.sizes
-        this.targetElement = this.experience.targetElement
-        this.world = this.experience.world
-        this.scene = this.experience.scene
+        this.experience = new Experience();
+        this.config = this.experience.config;
+        this.resources = this.experience.resources;
+        this.debug = this.experience.debug;
+        this.time = this.experience.time;
+        this.sizes = this.experience.sizes;
+        this.targetElement = this.experience.targetElement;
+        this.world = this.experience.world;
+        this.scene = this.experience.scene;
+
+        // Add event listener for key presses
+        window.addEventListener('keydown', this.onKeyDown.bind(this), false);
 
         // Camera toggle
         if (this.debug) {
             this.debugFolder = this.debug.addFolder({
                 title: 'Camera Toggle',
                 expanded: false
-            })
+            });
         }
 
         // Set up
-        this.mode = 'default' // default \ debug
+        this.mode = 'default'; // default \ debug
 
-        this.setInstance()
-        this.setModes()
+        this.setInstance();
+        this.setModes();
+    }
+
+    // Rest of your code
+
+    onKeyDown(event) {
+        switch (event.key) {
+            case 'p':
+                this.changeMode('podium_view');
+                break;
+            case 'f':
+                this.changeMode('front_view');
+                break;
+            case 'd':
+                this.changeMode('default');
+                break;
+        }
     }
 
     setInstance() {

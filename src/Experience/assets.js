@@ -29,6 +29,12 @@ export default [
         type: "texture",
       },
       { name: "roomModel", source: "/assets/roomModel.glb" },
+      { name: "chairModel", source: "/assets/chairModel.glb" },
+      {
+        name: "chairTexture",
+        source: "/assets/chairTexture.png",
+        type: "texture",
+      },
     ],
   },
 ];
