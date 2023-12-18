@@ -22,9 +22,7 @@ const interval = setInterval(function () {
             loadingScreen.style.display = 'none'; 
         }, 500); 
     }
-}, 180);
-
-
+}, 120);
 
 document.addEventListener('DOMContentLoaded', function() {
     function fadeOut(element) {

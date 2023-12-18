@@ -4,13 +4,13 @@ import Experience from './Experience.js'
 
 export default class Screen
 {
-    constructor(_mesh, _sourcePath)
+    constructor(_mesh, _sourcePath, debugFolder)
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
-        this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.world = this.experience.world
+        this.debugFolder = debugFolder
 
         this.mesh = _mesh
         this.sourcePath = _sourcePath
@@ -21,16 +21,10 @@ export default class Screen
 
     setupDebug() 
     {
-        // Visible Controll 
-        this.debugFolder = this.debug.addFolder({
-            title: 'Screen',
-            expanded: false
-        })
-
         this.debugFolder.addInput(
             this.model.mesh.material,
             'visible',
-            { label: 'visible' }
+            { label: 'Video Screen' }
         )
     }
 

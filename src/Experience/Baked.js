@@ -5,22 +5,20 @@ import vertexShader from "./shaders/baked/vertex.glsl";
 import fragmentShader from "./shaders/baked/fragment.glsl";
 
 export default class CoffeeSteam {
-  constructor() {
+  constructor(debugFolder) {
     this.experience = new Experience();
     this.resources = this.experience.resources;
-    this.debug = this.experience.debug;
     this.scene = this.experience.scene;
     this.time = this.experience.time;
-
-    // Debug
-    if (this.debug) {
-      this.debugFolder = this.debug.addFolder({
-        title: "Light Controls",
-        expanded: false,
-      });
-    }
+    this.debugFolder = debugFolder;
 
     this.setModel();
+    this.setLightingMix(0.14, 0);
+  }
+
+  setLightingMix(night, neutral) {
+    this.model.material.uniforms.uNightMix.value = night;
+    this.model.material.uniforms.uNeutralMix.value = neutral;
   }
 
   setModel() {
@@ -44,7 +42,7 @@ export default class CoffeeSteam {
     this.model.lightMapTexture.flipY = false;
 
     this.colors = {};
-    this.colors.BackDrop = "#FF000A";
+    this.colors.BackDrop = "#000000";
 
     this.model.material = new THREE.ShaderMaterial({
       uniforms: {
@@ -72,24 +70,12 @@ export default class CoffeeSteam {
     this.scene.add(this.model.mesh);
 
     // Debug
-    if (this.debug) {
-      this.debugFolder.addInput(
-        this.model.material.uniforms.uNightMix,
-        "value",
-        { label: "Night", min: 0, max: 1 }
-      );
-
-      this.debugFolder.addInput(
-        this.model.material.uniforms.uNeutralMix,
-        "value",
-        { label: "Neutral", min: 0, max: 1 }
-      );
-
+    if (this.debugFolder) {
       this.debugFolder
           .addInput(
               this.colors,
               'BackDrop',
-              { view: 'color' }
+              { label: 'BackDrop Color', view: 'color' }
           )
           .on('change', () =>
           {
@@ -100,7 +86,7 @@ export default class CoffeeSteam {
           .addInput(
               this.model.material.uniforms.uLightAreaStrength,
               'value',
-              { label: 'BackDropStrength', min: 0, max: 0.8 }
+              { label: 'BackDrop Strength', min: 0, max: 0.8 }
           )
     }   
   }

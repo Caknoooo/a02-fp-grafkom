@@ -4,26 +4,24 @@ import Experience from "./Experience.js";
 import vertexShader from "./shaders/baked/vertex.glsl";
 import fragmentShader from "./shaders/baked/fragment.glsl";
 
-export default class CoffeeSteam {
-  constructor() {
+export default class Back {
+  constructor(debugFolder) {
     this.experience = new Experience();
-    this.resources = this.experience.resources;
-    this.debug = this.experience.debug;
-    this.scene = this.experience.scene;
-    this.time = this.experience.time;
+    this.resources = this.experience.resources
+    this.scene = this.experience.scene
+    this.world = this.experience.world
+    this.time = this.experience.time
+    this.debugFolder = debugFolder
 
     window.addEventListener('keydown', this.onKeyDown.bind(this), false);
 
-    // Debug
-    if (this.debug) {
-      this.debugFolder = this.debug.addFolder({
-        title: "Back Controls",
-        expanded: false,
-      });
-    }
-
     this.setModel();
-    this.model.mesh.visible = false;
+    this.setLightingMix(0.14, 0);
+  }
+
+  setLightingMix(night, neutral) {
+    this.model.material.uniforms.uNightMix.value = night;
+    this.model.material.uniforms.uNeutralMix.value = neutral;
   }
 
   onKeyDown(event) {
@@ -45,19 +43,19 @@ export default class CoffeeSteam {
 
     this.model.mesh = this.resources.items.backModel.scene.children[0];
 
-    this.model.bakedDayTexture = this.resources.items.backTexture;
+    this.model.bakedDayTexture = this.resources.items.backDay;
     this.model.bakedDayTexture.encoding = THREE.sRGBEncoding;
     this.model.bakedDayTexture.flipY = false;
 
-    this.model.bakedNightTexture = this.resources.items.backTexture;
+    this.model.bakedNightTexture = this.resources.items.backNight;
     this.model.bakedNightTexture.encoding = THREE.sRGBEncoding;
     this.model.bakedNightTexture.flipY = false;
 
-    this.model.bakedNeutralTexture = this.resources.items.backTexture;
+    this.model.bakedNeutralTexture = this.resources.items.backNeutral;
     this.model.bakedNeutralTexture.encoding = THREE.sRGBEncoding;
     this.model.bakedNeutralTexture.flipY = false;
 
-    this.model.lightMapTexture = this.resources.items.backTexture;
+    this.model.lightMapTexture = this.resources.items.backDay;
     this.model.lightMapTexture.flipY = false;
 
     this.colors = {};
@@ -69,6 +67,9 @@ export default class CoffeeSteam {
         uBakedNightTexture: { value: this.model.bakedNightTexture },
         uBakedNeutralTexture: { value: this.model.bakedNeutralTexture },
         uLightMapTexture: { value: this.model.lightMapTexture },
+
+        uNightMix: { value: 0.14 },
+        uNeutralMix: { value: 0 },
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
@@ -81,9 +82,11 @@ export default class CoffeeSteam {
     });
 
     this.scene.add(this.model.mesh);
+    this.model.mesh.visible = false;
+
     // visible controls
-    if (this.debug) {
-      this.debugFolder.addInput(this.model.mesh, "visible", { label: "visible" });
+    if(this.debugFolder) {
+      this.debugFolder.addInput(this.model.mesh, "visible", { label: "Back Wall" });
     }
 
   }

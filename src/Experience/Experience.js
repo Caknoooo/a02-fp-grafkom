@@ -54,20 +54,6 @@ export default class Experience
         this.update()
     }
 
-    // static getInstance(_options = {})
-    // {
-    //     console.log(Experience.instance)
-    //     if(Experience.instance)
-    //     {
-    //         return Experience.instance
-    //     }
-        
-    //     console.log('create')
-    //     Experience.instance = new Experience(_options)
-        
-    //     return Experience.instance
-    // }
-
     setConfig()
     {
         this.config = {}
@@ -107,7 +93,7 @@ export default class Experience
     setScene()
     {
         this.scene = new THREE.Scene()
-        this.scene.background = new THREE.Color(0xffffff)
+        this.scene.background = new THREE.Color(0x3C3C3C)
     }
 
     setCamera()

@@ -31,14 +31,34 @@ export default [
       { name: "roomModel", source: "/assets/room.glb" },
       { name: "chairModel", source: "/assets/chair.glb" },
       {
-        name: "chairTexture",
-        source: "/assets/chairTexture.png",
+        name: "chairDay",
+        source: "/assets/chairDay.png",
+        type: "texture",
+      },
+      {
+        name: "chairNight",
+        source: "/assets/chairNight.png",
+        type: "texture",
+      },
+      {
+        name: "chairNeutral",
+        source: "/assets/chairNeutral.png",
         type: "texture",
       },
       { name: "backModel", source: "/assets/backModel.glb" },
       {
-        name: "backTexture",
-        source: "/assets/backTexture.png",
+        name: "backDay",
+        source: "/assets/backDay.png",
+        type: "texture",
+      },
+      {
+        name: "backNight",
+        source: "/assets/backNight.png",
+        type: "texture",
+      },
+      {
+        name: "backNeutral",
+        source: "/assets/backNeutral.png",
         type: "texture",
       },
       {

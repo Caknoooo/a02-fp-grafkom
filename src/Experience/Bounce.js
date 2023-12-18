@@ -4,23 +4,14 @@ import Experience from './Experience.js'
 
 export default class Bounce
 {
-    constructor()
+    constructor(debugFolder)
     {
         this.experience = new Experience()
         this.resources = this.experience.resources
-        this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.world = this.experience.world
         this.time = this.experience.time
-
-        // Debug
-        if(this.debug)
-        {
-            this.debugFolder = this.debug.addFolder({
-                title: 'bounce',
-                expanded: false
-            })
-        }
+        this.debugFolder = debugFolder
 
         this.setModel()
         this.setAnimation()
@@ -70,7 +61,7 @@ export default class Bounce
         this.animations.speed.z = 0.00030
         this.animations.speed.y = 0.00030
 
-        if(this.debug)
+        if(this.debugFolder)
         {
             // speed controller 
             const speedController = {
@@ -80,11 +71,11 @@ export default class Bounce
             this.debugFolder.addInput(
                 speedController,
                 'speed',
-                { label: 'speed', min: 0.0001, max: 0.001, step: 0.0001 }
+                { label: 'Bouncing Speed', min: 0.1, max: 20, step: 0.01 }
             ).on('change', () =>
             {
-                this.animations.speed.z = speedController.speed
-                this.animations.speed.y = speedController.speed
+                this.animations.speed.z = speedController.speed/10000
+                this.animations.speed.y = speedController.speed/10000
             })
         }
     }
