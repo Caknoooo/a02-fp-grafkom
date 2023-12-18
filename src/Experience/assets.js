@@ -5,7 +5,7 @@ export default [
     items: [
       {
         name: "backScreenModel",
-        source: "/assets/backScreenModel.glb",
+        source: "/assets/screen.glb",
         type: "model",
       },
       {
@@ -28,8 +28,8 @@ export default [
         source: "/assets/lightMap.png",
         type: "texture",
       },
-      { name: "roomModel", source: "/assets/roomModel.glb" },
-      { name: "chairModel", source: "/assets/chairModel.glb" },
+      { name: "roomModel", source: "/assets/room.glb" },
+      { name: "chairModel", source: "/assets/chair.glb" },
       {
         name: "chairTexture",
         source: "/assets/chairTexture.png",
