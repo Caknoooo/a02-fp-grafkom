@@ -35,6 +35,12 @@ export default [
         source: "/assets/chairTexture.png",
         type: "texture",
       },
+      { name: "backModel", source: "/assets/backModel.glb" },
+      {
+        name: "backTexture",
+        source: "/assets/backTexture.png",
+        type: "texture",
+      },
     ],
   },
 ];

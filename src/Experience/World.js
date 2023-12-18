@@ -3,6 +3,7 @@ import Experience from './Experience.js'
 import Baked from './Baked.js'
 import Screen from './Screen.js'
 import Chair from './Chair.js'
+import Back from './Back.js'
 
 export default class World
 {
@@ -20,6 +21,7 @@ export default class World
                 this.setBaked()
                 this.setScreens()
                 this.setChairs()
+                this.setBack()
             }
         })
     }
@@ -42,6 +44,11 @@ export default class World
         this.chair = new Chair()
     }
 
+  
+    setBack() {
+      this.back = new Back();
+    }
+  
     resize()
     {
     }

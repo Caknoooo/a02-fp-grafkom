@@ -56,11 +56,15 @@ export default class CoffeeSteam {
     this.model.bakedNeutralTexture.encoding = THREE.sRGBEncoding;
     this.model.bakedNeutralTexture.flipY = false;
 
+    this.model.lightMapTexture = this.resources.items.chairTexture;
+    this.model.lightMapTexture.flipY = false;
+
     this.model.material = new THREE.ShaderMaterial({
       uniforms: {
         uBakedDayTexture: { value: this.model.bakedDayTexture },
         uBakedNightTexture: { value: this.model.bakedNightTexture },
         uBakedNeutralTexture: { value: this.model.bakedNeutralTexture },
+        uLightMapTexture: { value: this.model.lightMapTexture },
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
