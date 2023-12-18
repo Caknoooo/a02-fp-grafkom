@@ -4,6 +4,7 @@ import Baked from './Baked.js'
 import Screen from './Screen.js'
 import Chair from './Chair.js'
 import Back from './Back.js'
+import Bounce from './Bounce.js'
 
 export default class World
 {
@@ -22,6 +23,7 @@ export default class World
                 this.setScreens()
                 this.setChairs()
                 this.setBack()
+                this.setBounce()
             }
         })
     }
@@ -48,6 +50,10 @@ export default class World
     setBack() {
       this.back = new Back();
     }
+
+    setBounce() {
+        this.bounce = new Bounce();
+    }
   
     resize()
     {
@@ -55,6 +61,9 @@ export default class World
 
     update()
     {
+        if (this.bounce) {
+          this.bounce.update();
+        }
     }
 
     destroy()

@@ -16,6 +16,22 @@ export default class Screen
         this.sourcePath = _sourcePath
 
         this.setModel()
+        this.setupDebug()
+    }
+
+    setupDebug() 
+    {
+        // Visible Controll 
+        this.debugFolder = this.debug.addFolder({
+            title: 'Screen',
+            expanded: false
+        })
+
+        this.debugFolder.addInput(
+            this.model.mesh.material,
+            'visible',
+            { label: 'visible' }
+        )
     }
 
     setModel()

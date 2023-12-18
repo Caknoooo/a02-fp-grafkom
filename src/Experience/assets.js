@@ -41,6 +41,11 @@ export default [
         source: "/assets/backTexture.png",
         type: "texture",
       },
+      {
+        name: "screenOff",
+        source: "/assets/screenOff.png",
+        type: "texture",
+      },
     ],
   },
 ];
