@@ -46,6 +46,12 @@ export default class Camera {
             case 'd':
                 this.changeMode('default');
                 break;
+            case 's':
+                this.changeMode('side_view');
+                break;
+            case 'u':
+                this.changeMode('up_view');
+                break;
         }
     }
 
@@ -64,6 +70,8 @@ export default class Camera {
                         default: 'default',
                         front_view: 'front_view',
                         podium_view: 'podium_view',
+                        side_view: 'side_view',
+                        up_view: 'up_view',
                     },
                 }
             )
@@ -116,6 +124,40 @@ export default class Camera {
         this.modes.podium_view.orbitControls.minDistance = 2
         this.modes.podium_view.orbitControls.enableDamping = true
         this.modes.podium_view.orbitControls.update()
+
+        // Side view
+        this.modes.side_view = {}
+        this.modes.side_view.instance = this.instance.clone()
+        this.modes.side_view.instance.rotation.reorder('YXZ')
+        this.modes.side_view.instance.position.set(-1.5, 0.3, 0.3)
+        this.modes.side_view.orbitControls = new OrbitControls(this.modes.side_view.instance, this.targetElement)
+        this.modes.side_view.orbitControls.target = new THREE.Vector3().addVectors(this.modes.side_view.instance.position, new THREE.Vector3(0, 0, -1.5))
+        this.modes.side_view.orbitControls.enabled = false
+        this.modes.side_view.orbitControls.minAzimuthAngle = -Math.PI / 2.5
+        this.modes.side_view.orbitControls.maxAzimuthAngle = Math.PI / 3.5
+        this.modes.side_view.orbitControls.minPolarAngle = THREE.MathUtils.degToRad(80)
+        this.modes.side_view.orbitControls.maxPolarAngle = THREE.MathUtils.degToRad(90)
+        this.modes.side_view.orbitControls.maxDistance = 5
+        this.modes.side_view.orbitControls.minDistance = 2
+        this.modes.side_view.orbitControls.enableDamping = true
+        this.modes.side_view.orbitControls.update()
+
+        // Up view
+        this.modes.up_view = {}
+        this.modes.up_view.instance = this.instance.clone()
+        this.modes.up_view.instance.rotation.reorder('YXZ')
+        this.modes.up_view.instance.position.set(0, 0.1, 0)
+        this.modes.up_view.orbitControls = new OrbitControls(this.modes.up_view.instance, this.targetElement)
+        this.modes.up_view.orbitControls.target = new THREE.Vector3().addVectors(this.modes.up_view.instance.position, new THREE.Vector3(-3, 1, 0))
+        this.modes.up_view.orbitControls.enabled = false
+        this.modes.up_view.orbitControls.minAzimuthAngle = -Math.PI / 16 + Math.PI / 2
+        this.modes.up_view.orbitControls.maxAzimuthAngle = Math.PI / 16 + Math.PI / 2
+        this.modes.up_view.orbitControls.minPolarAngle = THREE.MathUtils.degToRad(100)
+        this.modes.up_view.orbitControls.maxPolarAngle = THREE.MathUtils.degToRad(108)
+        this.modes.up_view.orbitControls.maxDistance = 5
+        this.modes.up_view.orbitControls.minDistance = 2
+        this.modes.up_view.orbitControls.enableDamping = true
+        this.modes.up_view.orbitControls.update()
     }
 
     changeMode(_mode)
@@ -127,20 +169,41 @@ export default class Camera {
 
             this.modes.front_view.orbitControls.enabled = true
             this.modes.podium_view.orbitControls.enabled = false
+            this.modes.side_view.orbitControls.enabled = false
+            this.modes.up_view.orbitControls.enabled = false
 
             this.modes.front_view.instance.position.set(-2.7, 0.5, 0.5)
         } else if (this.mode === 'podium_view') {
             this.instance.setFocalLength(19)
             this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
 
-            this.modes.front_view.orbitControls.enabled = false
             this.modes.podium_view.orbitControls.enabled = true
-        } else {
-            this.instance.setFocalLength(101)
-            this.modes.podium_view.instance.position.set(0, 0, 0)
+            this.modes.front_view.orbitControls.enabled = false
+            this.modes.side_view.orbitControls.enabled = false
+            this.modes.up_view.orbitControls.enabled = false
+        } else if (this.mode === 'side_view') {
+            this.instance.setFocalLength(19)
+            this.modes.side_view.instance.position.set(-1.5, 0.3, 0.3)
 
+            this.modes.side_view.orbitControls.enabled = true
             this.modes.front_view.orbitControls.enabled = false
             this.modes.podium_view.orbitControls.enabled = false
+            this.modes.up_view.orbitControls.enabled = false
+        } else if (this.mode === 'up_view') {
+            this.instance.setFocalLength(14)
+            this.modes.podium_view.instance.position.set(-2.5, 0.3, -0.4)
+
+            this.modes.up_view.orbitControls.enabled = true
+            this.modes.front_view.orbitControls.enabled = false
+            this.modes.podium_view.orbitControls.enabled = false
+            this.modes.side_view.orbitControls.enabled = false
+        } else {
+            this.instance.setFocalLength(101)
+            this.modes.default.orbitControls.enabled = true
+            this.modes.front_view.orbitControls.enabled = false
+            this.modes.podium_view.orbitControls.enabled = false
+            this.modes.side_view.orbitControls.enabled = false
+            this.modes.up_view.orbitControls.enabled = false
         }
     }
 
@@ -157,12 +220,20 @@ export default class Camera {
 
         this.modes.podium_view.instance.aspect = this.config.width / this.config.height
         this.modes.podium_view.instance.updateProjectionMatrix()
+
+        this.modes.side_view.instance.aspect = this.config.width / this.config.height
+        this.modes.side_view.instance.updateProjectionMatrix()
+
+        this.modes.up_view.instance.aspect = this.config.width / this.config.height
+        this.modes.up_view.instance.updateProjectionMatrix()
     }
 
     update()
     {
         this.modes.front_view.orbitControls.update()
         this.modes.podium_view.orbitControls.update()
+        this.modes.side_view.orbitControls.update()
+        this.modes.up_view.orbitControls.update()
 
         // Apply coordinates
         this.instance.position.copy(this.modes[this.mode].instance.position)
