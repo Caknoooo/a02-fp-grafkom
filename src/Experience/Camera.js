@@ -67,11 +67,11 @@ export default class Camera {
                 'mode',
                 {
                     options: {
-                        default: 'default',
-                        front_view: 'front_view',
-                        podium_view: 'podium_view',
-                        side_view: 'side_view',
-                        up_view: 'up_view',
+                        default: 'default (key d)',
+                        front_view: 'front_view (key f)',
+                        podium_view: 'podium_view (key p)',
+                        side_view: 'side_view (key s)',
+                        up_view: 'up_view (key u)',
                     },
                 }
             )
